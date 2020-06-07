@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Signup</title>
+{% endblock %}
+
+{% block body %}
+    <h1 style="color:indianred">Sign Up : </h1>
+    <hr>
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        <br>
+        <span style="color:peru">{{ form.username.label }}</span> <span style="color: red">*</span> :
+        {% if form.username.errors %}
+            {{ form.username(class="form-control is-invalid",placeholder="Username") }}
+            {% for error in form.username.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        {% else %}
+            {{ form.username(class="form-control",placeholder="Username") }}
+        {% endif %}
+        <br>
+
+        <span style="color:peru">{{ form.email.label }}</span> <span style="color: red">*</span> :
+                {% if form.email.errors %}
+            {{ form.email(class="form-control is-invalid",placeholder="Email") }}
+            {% for error in form.email.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        {% else %}
+            {{ form.email(class="form-control",placeholder="Email") }}
+        {% endif %}
+        <br>
+
+        <span style="color:peru">{{ form.password.label }}</span> <span style="color: red">*</span> :
+                {% if form.password.errors %}
+            {{ form.password(class="form-control is-invalid",placeholder="Password") }}
+            {% for error in form.password.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        {% else %}
+            {{ form.password(class="form-control",placeholder="Password") }}
+        {% endif %}
+
+        <span style="color:peru">{{ form.confirmpassword.label }}</span> <span style="color: red">*</span> :
+                {% if form.confirmpassword.errors %}
+            {{ form.confirmpassword(class="form-control is-invalid",placeholder="Confirm Password") }}
+            {% for error in form.confirmpassword.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        {% else %}
+            {{ form.confirmpassword(class="form-control",placeholder="Confirm Password") }}
+        {% endif %}
+        <br>
+        <br>
+        {{ form.submit(class="btn btn-info ") }}
+
+    </form>
+{% endblock %}

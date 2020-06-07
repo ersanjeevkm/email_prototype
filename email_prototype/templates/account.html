@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Account Info</title>
+{% endblock %}
+
+{% block body %}
+    <h1 style="color:indianred">Account Info </h1>
+    <hr>
+    <div class="alert alert-light" role="alert" style="overflow: auto">
+        <div class="alert alert-light" role="alert">
+        <img style="border-radius: 50%; float: left" width="125" height="125" src="{{ url_for('static', filename='profile_pics/' + current_user.picture ) }}">
+        <div style="display: inline-block; margin: 3%; float: left">
+            <h3><span style="color: #253ba7">{{ form.username.data }}</span></h3>
+            <h6><span style="color: #0da728">{{ form.email.data }}</span></h6>
+        </div>
+    </div>
+    </div>
+    <hr>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <br>
+
+        <span style="color:peru">{{ form.username.label }}</span> <span style="color: red">*</span> :
+        {% if form.username.errors %}
+            {{ form.username(class="form-control is-invalid",placeholder="Username") }}
+            {% for error in form.username.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        {% else %}
+            {{ form.username(class="form-control",placeholder="Username") }}
+        {% endif %}
+        <br>
+
+        <span style="color:peru">{{ form.email.label }}</span> <span style="color: red">*</span> :
+        {% if form.email.errors %}
+            {{ form.email(class="form-control is-invalid",placeholder="Email") }}
+            {% for error in form.email.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        {% else %}
+            {{ form.email(class="form-control",placeholder="Email") }}
+        {% endif %}
+
+        <br>
+        <span style="color:peru">{{ form.picture.label }}</span> :
+        {{ form.picture }}
+        <p style="color: darkmagenta;">Please choose the squared image for better resolution!</p>
+        <div>
+            {% for error in form.picture.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+        <br>
+        {{ form.submit(class="btn btn-info ") }}
+
+    </form>
+
+{% endblock %}

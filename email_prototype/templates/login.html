@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Login</title>
+{% endblock %}
+
+{% block body %}
+    <h1 style="color:indianred">Log In : </h1>
+    <hr>
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        <br>
+
+        <span style="color:peru">{{ form.email.label }}</span> <span style="color: red">*</span> :
+        {% if form.email.errors %}
+            {{ form.email(class="form-control is-invalid",placeholder="Email") }}
+            {% for error in form.email.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        {% else %}
+            {{ form.email(class="form-control",placeholder="Email") }}
+        {% endif %}
+        <br>
+
+        <span style="color:peru">{{ form.password.label }}</span> <span style="color: red">*</span> :
+        {% if form.password.errors %}
+            {{ form.password(class="form-control is-invalid",placeholder="Password") }}
+            {% for error in form.password.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        {% else %}
+            {{ form.password(class="form-control",placeholder="Password") }}
+        {% endif %}
+        <br>
+        {{ form.remember }}
+        {{ form.remember.label }}
+        <a style="float: right" href="{{ url_for('reset_request') }}">Forget password? </a>
+        <br>
+        <br>
+        {{ form.submit(class="btn btn-info ") }}
+
+    </form>
+{% endblock %}

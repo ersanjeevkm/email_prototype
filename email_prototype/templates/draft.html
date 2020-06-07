@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Draft</title>
+{% endblock %}
+
+{% block body %}
+    <h1 style="color:indianred">Draft ({{ mails.total }}) </h1>
+    <hr>
+
+    {% for mail in mails.items %}
+        <a style="overflow: auto" class="btn btn-light btn-block my-0" href="{{ url_for("view_Draftmail", id=mail.id) }}">
+        <span style="float:left; color: teal">
+        {{ mail.datetime.strftime("%a, %d %b %Y %H:%M:%S") }}&emsp;
+        </span>
+        <span style="float: left; color: #253ba7">
+        {{ mail.receiver }}
+        </span>
+        <span style="float: center; color: dimgrey">
+        <b>{{ mail.subject }}</b>
+        </span>
+        </a>
+        <br>
+    {% endfor %}
+
+    {% for page in mails.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+    {% if page %}
+        {% if page==mails.page %}
+            <a class="btn btn-secondary" href="{{ url_for('user_inbox',page=page) }}" >{{ page }}</a>
+        {% else %}
+            <a class="btn btn-outline-secondary" href="{{ url_for('user_inbox',page=page) }}" >{{ page }}</a>
+        {% endif %}
+    {% else %}
+        ...
+    {% endif %}
+    {% endfor %}
+
+{% endblock %}

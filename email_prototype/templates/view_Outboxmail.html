@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Outbox - {{ mail.subject }}</title>
+{% endblock %}
+
+{% block body %}
+    <h3 style="color:indianred">An Outbox mail, Dated : <span style="color: blue">{{ mail.datetime.strftime("%a, %d %b %Y %H:%M:%S") }}</span> </h3>
+    <hr>
+    <div class="alert alert-light" role="alert">
+      <h4 class="alert-heading" style="text-align: center">{{ mail.subject }}</h4>
+      <hr>
+      <h4 class="alert-heading">Receiver : </h4>
+      <p style="text-indent: 50px">
+          {{ mail.receiver }}
+      </p>
+      <hr>
+      <h4 class="alert-heading">Body : </h4>
+      <p style="text-indent: 50px;white-space: pre-wrap">
+          {{ mail.message }}
+      </p>
+      <hr>
+      <a class="btn btn-danger" onclick="return confirm('Are you sure wanna delete this mail : {{ mail.subject }}')" href="{{ url_for('Outboxmail_delete', id=mail.id) }}">Delete</a>
+      <hr>
+    </div>
+
+{% endblock %}

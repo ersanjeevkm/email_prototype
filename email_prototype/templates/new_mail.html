@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Compose Mail</title>
+{% endblock %}
+
+{% block body %}
+    <h1 style="color:indianred">Compose Mail </h1>
+    <hr>
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        <br>
+
+        <span style="color:peru">{{ form.receiver.label }}</span> <span style="color: red">*</span> :
+        {% if form.receiver.errors %}
+            {{ form.receiver(class="form-control is-invalid",placeholder="Recipient") }}
+            {% for error in form.receiver.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        {% else %}
+            {{ form.receiver(class="form-control",placeholder="Recipient") }}
+        {% endif %}
+        <br>
+
+        <span style="color:peru">{{ form.subject.label }}</span> <span style="color: red">*</span> :
+        {% if form.subject.errors %}
+            {{ form.subject(class="form-control is-invalid",placeholder="Subject") }}
+            {% for error in form.subject.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        {% else %}
+            {{ form.subject(class="form-control",placeholder="Subject") }}
+        {% endif %}
+        <br>
+
+        <span style="color:peru">{{ form.message.label }}</span> <span style="color: red">*</span> :
+        {% if form.message.errors %}
+            {{ form.message(class="form-control is-invalid",placeholder="Message",rows=10) }}
+            {% for error in form.message.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        {% else %}
+            {{ form.message(class="form-control",placeholder="Message",rows=10) }}
+        {% endif %}
+
+        <br>
+        <br>
+        {{ form.submit(class="btn btn-info ") }}
+        {{ form.draft(class="btn btn-success ml-2") }}
+    <br>
+    </form>
+
+{% endblock %}
