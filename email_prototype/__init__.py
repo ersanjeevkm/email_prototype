@@ -10,8 +10,8 @@ app.config["SECRET_KEY"] = 'f9e0997f75af4d3cc6fe87017a27ded5940ec519947f6d85a517
 app.config["MAIL_SERVER"] = 'smtp.gmail.com'
 app.config["MAIL_PORT"] = 587
 app.config["MAIL_USE_TLS"] = True
-app.config["MAIL_USERNAME"] = 'er.sanjeev.au@gmail.com'
-app.config["MAIL_PASSWORD"] = 'KMSanjeev@1'
+app.config["MAIL_USERNAME"] = 'xxxxxxx'
+app.config["MAIL_PASSWORD"] = 'xxxxxxx'
 
 db = SQLAlchemy(app)
 login = LoginManager(app)
